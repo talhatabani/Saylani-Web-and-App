@@ -15,10 +15,10 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       position: absolute;
-      top: 50%;
+      top: 57%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 400px;
+      width: 100%;
     }
 
     .calculator-screen {
