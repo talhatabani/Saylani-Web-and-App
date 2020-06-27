@@ -1,0 +1,39 @@
+td{
+    font-family: 'calibri';
+    color:white;
+}
+
+.center{
+    text-align: center;
+}
+
+.main{
+    border:2px solid black;
+    width:60%; 
+    background-color:#6B5ACD;
+}
+
+table{
+    width:100%; text-align:left;
+}
+
+.left{
+    width:130px;
+}
+
+input[type="text"]{
+    height:22px;
+}
+
+input[type="number"]{
+    height:22px;
+}
+
+input[type="email"]{
+    height:22px;
+}
+
+.button{
+    height:30px;
+    width:10%;
+}

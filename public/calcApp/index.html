@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Calculator App</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <center><h1 style="font-weight: 700;"></br> Calculator App </br> by Talha Tabani</h1></center>
+    <div class="calculator card">
+
+      <input type="text" id="screen" class="calculator-screen z-depth-1" value="0" disabled>
+      <input style="position: absolute; background: transparent; border: none; color: white; padding-left: 10px; padding-top: 15px; font-size: 3rem;" type="text" id="signVal" value disabled>
+
+      <div class="calculator-keys">
+
+        <button type="button" class="operator btn btn-info" value="+" onclick="sign('+')">+</button>
+        <button type="button" class="operator btn btn-info" value="-" onclick="sign('-')">-</button>
+        <button type="button" class="operator btn btn-info" value="*" onclick="sign('*')">&#xD7;</button>
+        <button type="button" class="operator btn btn-info" value="/" onclick="sign('/')">&#xF7;</button>
+
+        <button type="button" value="7" class="newbtn btn btn-light waves-effect" onclick="valPress(7)">7</button>
+        <button type="button" value="8" class="newbtn btn btn-light waves-effect" onclick="valPress(8)">8</button>
+        <button type="button" value="9" class="newbtn btn btn-light waves-effect" onclick="valPress(9)">9</button>
+
+
+        <button type="button" value="4" class="newbtn btn btn-light waves-effect" onclick="valPress(4)">4</button>
+        <button type="button" value="5" class="newbtn btn btn-light waves-effect" onclick="valPress(5)">5</button>
+        <button type="button" value="6" class="newbtn btn btn-light waves-effect" onclick="valPress(6)">6</button>
+
+
+        <button type="button" value="1" class="newbtn btn btn-light waves-effect" onclick="valPress(1)">1</button>
+        <button type="button" value="2" class="newbtn btn btn-light waves-effect" onclick="valPress(2)">2</button>
+        <button type="button" value="3" class="newbtn btn btn-light waves-effect" onclick="valPress(3)">3</button>
+
+
+        <button type="button" value="0" class="newbtn btn btn-light waves-effect" onclick="valPress(0)" onkeydown="uniCharCode(event)">0</button>
+        <button type="button" id="decimal" class="function btn btn-secondary" onclick="decimal()" value=".">.</button>
+        <button type="button" class="function btn btn-danger btn-sm" onclick="clearAll()">AC</button>
+
+        <button type="button" class="equal-sign operator btn btn-default" onclick="equals()" value="=">=</button>
+
+      </div>
+    </div>
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+
+    <script type="text/javascript">
+
+    let calc = document.getElementById("screen")
+    let signVal = document.getElementById("signVal")
+    let firstVal, secondVal, symbol, answer;
+
+    function valPress(val){
+
+      var inputLength = calc.value
+      if(calc.value == 0 || calc.value == firstVal || calc.value == answer || calc.value == "E"){
+        calc.value = null
+        calc.value += val
+      }
+
+      else{
+        if(inputLength.length < 15){
+          calc.value += val
+        }
+
+        else{
+          alert("Values will not be greater than 15!")
+        }
+      }
+    }
+
+    function clearAll(){
+      calc.value = 0
+      firstVal = null
+      secondVal = null
+      symbol = null
+      answer = null
+      signVal.value = null
+    }
+
+    function decimal(){
+      let contains = calc.value
+      if(calc.value != 0 && !contains.includes(".")){
+        calc.value += "."
+      }
+    }
+
+    function sign(sign){
+      firstVal = calc.value
+      symbol = firstVal + sign
+      signVal.value = sign
+    }
+
+    function equals(){
+      var length;
+      secondVal = calc.value
+      if(symbol.includes("+")){
+        answer = parseFloat(+firstVal + +secondVal)
+      }
+
+      else if(symbol.includes("-")){
+        answer = parseFloat(firstVal - secondVal)
+      }
+
+      else if(symbol.includes("*")){
+        answer = parseFloat(firstVal * secondVal)
+      }
+
+      else if(symbol.includes("/")){
+        answer = parseFloat(firstVal / secondVal)
+      }
+
+      signVal.value = null
+
+      length = answer.toString()
+      if(length.length > 15){
+        calc.value = "E"
+        firstVal = 0;
+        secondVal = 0;
+      }
+
+      else{
+        firstVal = answer
+        calc.value = answer
+      }
+    }
+
+    </script>
+  </body>
+
+</html>
