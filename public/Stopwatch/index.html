@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>StopWatch App</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+
+</head>
+<body>
+	
+	<center><div class="main-container">
+		<div class="inner1">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<h1 class="heading">
+							STOPWATCH
+						</h1><br><br>
+					</div>
+				</div>	
+			
+				<div class="row">
+					<div class="col-md-4 col-sm-12">
+						<div class="countdown">
+							<span id="minutes" class="countdown-font">00</span>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-12">
+						<div class="countdown">
+							<span id="seconds" class="countdown-font">00</span>
+						</div>
+					</div>	
+					<div class="col-md-4 col-sm-12">
+						<div class="countdown">
+							<span id="miliSeconds" class="countdown-font">00</span>
+						</div>
+					</div>
+				</div>
+
+				<center><div class="row buttons-row">
+					<div class="col-md-3 button-inner">
+						<button style="background-color: green;" class="btn btn-custom" onclick="start()" id="startBtn" run>
+							Start
+						</button>
+					</div>
+					<div class="col-md-3 button-inner">
+						<button style="background-color: cornflowerblue" class="btn btn-custom" id="stop" onclick="stop()">
+							Stop
+						</button>
+					</div>
+					<div class="col-md-3 button-inner">
+						<button style="background-color: orange;" class="btn btn-custom" id="lap" onclick="lap()" disabled=true>
+							Lap
+						</button>
+					</div>
+					<div class="col-md-3 button-inner">
+						<button style="background-color: red;" class="btn btn-custom" id="reset" onclick="reset()" disabled=true>
+							Reset
+						</button>
+					</div>
+				</div></center>
+
+				<center><div class="row">
+					<div id="mainLaps" class="col-md-12">
+						<ol id="laps">
+							
+						</ol>
+					</div>
+				</div></center>
+			</div>
+		</div>
+		<br><br><h3 style="font-weight: 700; color: white;">Made by: Talha Tabani</h3>
+	</div></center>
+	</div>
+
+	<script src="js/jquery-3.2.1.min.js"></script>
+
+	<script>
+
+		var miliSeconds = 00, seconds = 00, minutes = 00, t, runs = 0;
+
+		function getFunc(id){
+			return document.getElementById(id);
+		}
+
+		function timer(){
+			miliSeconds++;
+			if(miliSeconds == 100){
+				miliSeconds = 00;
+				seconds++;
+				if(seconds == 60){
+					seconds = 00
+					minutes++; 
+				}
+			}
+			
+			document.getElementById("miliSeconds").innerHTML = miliSeconds;
+			document.getElementById("seconds").innerHTML = seconds;
+			document.getElementById("minutes").innerHTML = minutes;
+		}
+
+		var count = 0;
+
+		function pause(){
+			var x = document.getElementById("startBtn");
+			x.style.backgroundColor = "green";
+			x.innerHTML = "Start";
+			x.setAttribute("onclick", "start()")
+			clearInterval(t);
+			document.getElementById("reset").disabled = false;
+			document.getElementById("stop").disabled = false;
+			document.getElementById("lap").disabled = true;
+		}
+
+		function start(){
+			var x = document.getElementById("startBtn");
+			t = setInterval(timer, 10);
+			x.style.backgroundColor = "red";
+			x.innerHTML = "Pause";
+			x.setAttribute("onclick", "pause()")
+			document.getElementById("lap").disabled = false;
+		}
+
+		function lap(){
+			runs++;
+			let li = document.createElement('li');
+			li.textContent = runs + ' = ' + minutes + ' : ' + seconds + ' : ' + miliSeconds;
+			document.getElementById("laps").appendChild(li);
+		}
+
+		function stop(){
+			clearInterval(t);
+			miliSeconds = 0;
+			seconds = 0;
+			minutes = 0;
+			document.getElementById("reset").disabled = false;
+			document.getElementById("lap").disabled = true;
+			var x = document.getElementById("startBtn");
+			x.style.backgroundColor = "green";
+			x.innerHTML = "Start";
+			x.setAttribute("onclick", "start()")
+		}
+
+		function reset(){
+			stop();
+			document.getElementById("miliSeconds").innerHTML = 00;
+			document.getElementById("seconds").innerHTML = 00;
+			document.getElementById("minutes").innerHTML = 00;
+			var list = document.getElementById("laps")
+			list.remove();
+			let ol = document.createElement('ol')
+			ol.setAttribute("id", "laps");
+			document.getElementById("mainLaps").appendChild(ol);
+		}
+
+	</script>
+
+</body>
+</html>

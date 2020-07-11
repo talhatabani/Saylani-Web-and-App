@@ -1,0 +1,94 @@
+.main-container{
+  width: 100%;
+  min-height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center; 
+  padding: 55px 15px 55px 15px; 
+  background-image: url('../images/bg01.jpg');
+}
+
+.inner1{
+  max-width: 100%;
+  width: 880px;
+  background-color: rgba(255,255,255,0.8);
+  border-radius: 18px;
+  padding-top: 45px;
+  padding-bottom: 45px;
+}
+
+.buttons-row{
+  padding: 0px 100px 0px 100px;;
+}
+
+@media (max-width: 768px){
+  .buttons-row{
+    padding: 0px;
+  }
+}
+
+@media (max-width: 768px){
+  .button-inner{
+    width: 50%;
+  }
+}
+
+.countdown{
+  padding: 4px;
+  height: 170px;
+  background-color: #333333;
+  border-radius: 10px;
+  margin: 0px 10px 25px 10px;
+}
+
+.countdown-font{
+  padding-bottom: 9px;
+  font-family: Barlow-Medium;
+  font-size: 150px;
+  line-height: 1;
+  color: #fff;
+}
+
+.btn-custom{
+  width: 130px;
+  height: 44px;
+  font-size: 23px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.heading{
+  font-family: Barlow-Bold;
+  color: #333333;
+  font-size: 40px;
+}
+
+li{
+  font-weight: 700;
+  font-size: 20px;
+}
+
+ol{
+  list-style: none;
+}
+
+@font-face {
+  font-family: Barlow-Regular;
+  src: url('../fonts/Barlow/Barlow-Regular.ttf'); 
+}
+
+@font-face {
+  font-family: Barlow-Medium;
+  src: url('../fonts/Barlow/Barlow-Medium.ttf'); 
+}
+
+@font-face {
+  font-family: Barlow-Bold;
+  src: url('../fonts/Barlow/Barlow-Bold.ttf'); 
+}
+
+
